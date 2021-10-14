@@ -13,6 +13,7 @@ import {
   ONBOARDING_PRIVACY_SETTINGS_ROUTE,
   ONBOARDING_COMPLETION_ROUTE,
   ONBOARDING_IMPORT_WITH_SRP_ROUTE,
+  ONBOARDING_METAMETRICS,
 } from '../../helpers/constants/routes';
 import {
   getCompletedOnboarding,
@@ -54,7 +55,7 @@ export default function OnboardingFlow() {
     // For ONBOARDING_V2 dev purposes,
     // Remove when ONBOARDING_V2 dev complete
     if (process.env.ONBOARDING_V2) {
-      history.push(ONBOARDING_IMPORT_WITH_SRP_ROUTE);
+      history.push(ONBOARDING_METAMETRICS);
       return;
     }
 

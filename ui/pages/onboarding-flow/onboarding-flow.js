@@ -155,7 +155,10 @@ export default function OnboardingFlow() {
             component={CreationSuccessful}
           />
           <Route path={ONBOARDING_WELCOME} component={OnboardingWelcome} />
-          <Route component={MetaMetricsComponent} />
+          <Route
+            path={ONBOARDING_METAMETRICS}
+            component={MetaMetricsComponent}
+          />
           <Route exact path="*" component={OnboardingFlowSwitch} />
         </Switch>
       </div>

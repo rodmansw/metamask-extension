@@ -38,6 +38,7 @@ import PrivacySettings from './privacy-settings/privacy-settings';
 import CreationSuccessful from './creation-successful/creation-successful';
 import OnboardingWelcome from './welcome/welcome';
 import ImportSRP from './import-srp/import-srp';
+import MetaMetricsComponent from './metametrics/metametrics';
 
 export default function OnboardingFlow() {
   const [secretRecoveryPhrase, setSecretRecoveryPhrase] = useState('');
@@ -154,6 +155,7 @@ export default function OnboardingFlow() {
             component={CreationSuccessful}
           />
           <Route path={ONBOARDING_WELCOME} component={OnboardingWelcome} />
+          <Route component={MetaMetricsComponent} />
           <Route exact path="*" component={OnboardingFlowSwitch} />
         </Switch>
       </div>

@@ -103,6 +103,7 @@ export default function Swap() {
   const [inputValue, setInputValue] = useState(fetchParams?.value || '');
   const [maxSlippage, setMaxSlippage] = useState(fetchParams?.slippage || 3);
   const [isFeatureFlagLoaded, setIsFeatureFlagLoaded] = useState(false);
+  const [hasFetched, setHasFetched] = useState(false);
   const [tokenFromError, setTokenFromError] = useState(null);
 
   const routeState = useSelector(getBackgroundSwapRouteState);
@@ -193,7 +194,7 @@ export default function Swap() {
 
   // eslint-disable-next-line
   useEffect(() => {
-    if (isFeatureFlagLoaded) {
+    if (isFeatureFlagLoaded && !hasFetched) {
       fetchTokens(chainId, useNewSwapsApi)
         .then((tokens) => {
           dispatch(setSwapsTokens(tokens));
@@ -210,6 +211,7 @@ export default function Swap() {
       if (!networkAndAccountSupports1559) {
         dispatch(fetchAndSetSwapsGasPriceInfo(chainId));
       }
+      setHasFetched(true);
       return () => {
         dispatch(prepareToLeaveSwaps());
       };
@@ -220,6 +222,7 @@ export default function Swap() {
     isFeatureFlagLoaded,
     useNewSwapsApi,
     networkAndAccountSupports1559,
+    hasFetched,
   ]);
 
   const hardwareWalletUsed = useSelector(isHardwareWallet);

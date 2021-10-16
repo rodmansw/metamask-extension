@@ -8,6 +8,7 @@ import NetworkDisplay from '../network-display';
 
 export default class AppHeader extends PureComponent {
   static propTypes = {
+    avatar: PropTypes.string,
     history: PropTypes.object,
     networkDropdownOpen: PropTypes.bool,
     showNetworkDropdown: PropTypes.func,
@@ -59,6 +60,7 @@ export default class AppHeader extends PureComponent {
 
   renderAccountMenu() {
     const {
+      avatar,
       isUnlocked,
       toggleAccountMenu,
       selectedAddress,
@@ -86,7 +88,12 @@ export default class AppHeader extends PureComponent {
             }
           }}
         >
-          <Identicon address={selectedAddress} diameter={32} addBorder />
+          <Identicon
+            addBorder
+            address={selectedAddress}
+            diameter={32}
+            image={avatar}
+          />
         </div>
       )
     );

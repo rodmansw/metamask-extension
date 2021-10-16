@@ -162,6 +162,7 @@ export default class AccountMenu extends Component {
       );
     }
 
+    let avatarIndex = 1;
     return filteredIdentities.map((identity) => {
       const isSelected = identity.address === selectedAddress;
 
@@ -175,6 +176,8 @@ export default class AccountMenu extends Component {
       });
       const addressDomains = addressConnectedDomainMap[identity.address] || {};
       const iconAndNameForOpenDomain = addressDomains[originOfCurrentTab];
+      const avatar = `images/avatars/(${avatarIndex}).png`;
+      avatarIndex = avatarIndex + 1 > 10 ? 1 : avatarIndex + 1;
 
       return (
         <div
@@ -194,7 +197,7 @@ export default class AccountMenu extends Component {
           <div className="account-menu__check-mark">
             {isSelected && <div className="account-menu__check-mark-icon" />}
           </div>
-          <Identicon address={identity.address} diameter={24} />
+          <Identicon address={identity.address} diameter={24} image={avatar} />
           <div className="account-menu__account-info">
             <div className="account-menu__name">{identity.name || ''}</div>
             <UserPreferencedCurrencyDisplay
